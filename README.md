@@ -13,7 +13,7 @@
     <a href="https://github.com/Adityapratapsingh28/Nivaran"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="Usage-Problem-Statement-and-Your-solution">View Demo</a>
+    <a href="https://health-tech-nivaran.vercel.app">View Demo</a>
     ·
     <a href="https://github.com/ACM-SIGKDD-SRM-KTR-STUDENT-CHAPTER/README_INSTRUCTIONS/issues">Report Bug</a>
     ·
@@ -34,7 +34,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">About the Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
