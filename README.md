@@ -117,7 +117,14 @@ For example, this is how you would list them:
 
 
 
-https://github.com/user-attachments/assets/6ed60b35-8f49-4dcb-afd4-41344385b5f6
+
+
+
+
+
+https://github.com/user-attachments/assets/401619b9-b1db-4652-bd98-77b30be6f6b4
+
+
 
 
 
@@ -126,26 +133,39 @@ https://github.com/user-attachments/assets/6ed60b35-8f49-4dcb-afd4-41344385b5f6
 
 The healthcare system faces challenges in timely, accurate diagnoses, especially where expertise is limited. Patients struggle to navigate care, and doctors may struggle to identify conditions with limited information. Traditional methods are often time-consuming, costly, and unreliable, leading to delayed treatment and suboptimal outcomes.
 
-## Graph
 
-<img width="373" alt="graph" src="https://github.com/user-attachments/assets/362127fb-cde2-4efa-bb55-f24fe9580b2e">
 
 
 
 <!-- ROADMAP -->
 ## Key Features 🤖
-- Plant disease prediction
+- Disease prediction
 
-   - Our Deep learning model will take the image of plant from user and predict the disease from which thbe plant is suffering from.
-
-- Fertilizer analysis summarization
-
-   - NLP model using webscrapping and month on month sentimental analysis on amazon reviews of each year given by user and it will provide the summary of all the reviews so the farmer can get a idea that how is the product is that product is going to help him or not.
+   - Our Deep learning model & Machine learning model will take the image & data of patient and predict the disease.
  
-- Multilingual website
 
-   - Our website is available on three languages right now that are hindi , english & tamil. This will provide ease of communication and readability to farmers.
+
+     
+![disease](https://github.com/user-attachments/assets/ee4554ed-ed8e-4c70-bf25-23f4db95e717)
+
+- Interactive Chatbot
+
+   - This chatbot can chat with you in real time and if you give some symptoms you are suffering, then it will suggest what kind of problem do you have, medcine you can take & some home remedies.
  
+     
+ 
+<img width="917" alt="chatbot" src="https://github.com/user-attachments/assets/31178176-5670-4234-b5a9-eb809f3968dc">
+
+ 
+- Nearby Pharmacy
+
+   - You can just input your area pincode and our platform will give you all nearby pharmacies details with location on map.
+ 
+
+
+
+![pharmacy](https://github.com/user-attachments/assets/fc64d7e1-baa8-4323-a386-3e7b00750a9f)
+
 - Farmers laws/schemes
 
    - Since many farmers are unaware about the farmer laws given by our goverment and schemes provided by the goverment to help farmers, so on our website we have provided the laws & schemes in a very easy simple language so the farmer can understand easily.
