@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Prediction - Nivaran</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        /* Custom styling for the grid and input fields */
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-label {
+            font-weight: bold;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            border: 2px solid #E5E7EB;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-field:focus {
+            border-color: #4F46E5;
+            outline: none;
+        }
+
+        /* Styling the Predict button */
+        .predict-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: #3B82F6;
+            color: #fff;
+            border-radius: 0.375rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .predict-btn:hover {
+            background-color: #2563EB;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-[#D1B8A6] dark:bg-[#210203] text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <nav class="bg-[#D1B8A6] dark:bg-[#210203] p-4 fixed w-full z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold">Nivaran</a>
+            <div class="flex items-center space-x-6">
+                <a href="disease.html?disease=brain-tumor" class="hover:text-gray-600 dark:hover:text-gray-300 transition duration-300">Back to Disease</a>
+                <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:inline"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 container mx-auto p-8">
+        <h1 class="text-5xl font-bold mb-8 text-center">Cancer Prediction</h1>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+            <!-- 5x6 grid of inputs -->
+            <div class="input-grid">
+                <div class="input-group">
+                    <label for="radius_mean" class="input-label">Radius Mean</label>
+                    <input type="number" id="radius_mean" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="texture_mean" class="input-label">Texture Mean</label>
+                    <input type="number" id="texture_mean" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="perimeter_mean" class="input-label">Perimeter Mean</label>
+                    <input type="number" id="perimeter_mean" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="area_mean" class="input-label">Area Mean</label>
+                    <input type="number" id="area_mean" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="smoothness_mean" class="input-label">Smoothness Mean</label>
+                    <input type="number" id="smoothness_mean" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="compactness_mean" class="input-label">Compactness Mean</label>
+                    <input type="number" id="compactness_mean" class="input-field">
+                </div>
+
+                <div class="input-group">
+                    <label for="concavity_mean" class="input-label">Concavity Mean</label>
+                    <input type="number" id="concavity_mean" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="concave_points_mean" class="input-label">Concave Points Mean</label>
+                    <input type="number" id="concave_points_mean" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="symmetry_mean" class="input-label">Symmetry Mean</label>
+                    <input type="number" id="symmetry_mean" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="fractal_dimension_mean" class="input-label">Fractal Dimension Mean</label>
+                    <input type="number" id="fractal_dimension_mean" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="radius_se" class="input-label">Radius SE</label>
+                    <input type="number" id="radius_se" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="texture_se" class="input-label">Texture SE</label>
+                    <input type="number" id="texture_se" class="input-field">
+                </div>
+
+                <div class="input-group">
+                    <label for="perimeter_se" class="input-label">Perimeter SE</label>
+                    <input type="number" id="perimeter_se" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="area_se" class="input-label">Area SE</label>
+                    <input type="number" id="area_se" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="smoothness_se" class="input-label">Smoothness SE</label>
+                    <input type="number" id="smoothness_se" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="compactness_se" class="input-label">Compactness SE</label>
+                    <input type="number" id="compactness_se" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="concavity_se" class="input-label">Concavity SE</label>
+                    <input type="number" id="concavity_se" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="concave_points_se" class="input-label">Concave Points SE</label>
+                    <input type="number" id="concave_points_se" class="input-field">
+                </div>
+
+                <div class="input-group">
+                    <label for="symmetry_se" class="input-label">Symmetry SE</label>
+                    <input type="number" id="symmetry_se" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="fractal_dimension_se" class="input-label">Fractal Dimension SE</label>
+                    <input type="number" id="fractal_dimension_se" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="radius_worst" class="input-label">Radius Worst</label>
+                    <input type="number" id="radius_worst" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="texture_worst" class="input-label">Texture Worst</label>
+                    <input type="number" id="texture_worst" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="perimeter_worst" class="input-label">Perimeter Worst</label>
+                    <input type="number" id="perimeter_worst" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="area_worst" class="input-label">Area Worst</label>
+                    <input type="number" id="area_worst" class="input-field">
+                </div>
+
+                <div class="input-group">
+                    <label for="smoothness_worst" class="input-label">Smoothness Worst</label>
+                    <input type="number" id="smoothness_worst" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="compactness_worst" class="input-label">Compactness Worst</label>
+                    <input type="number" id="compactness_worst" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="concavity_worst" class="input-label">Concavity Worst</label>
+                    <input type="number" id="concavity_worst" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="concave_points_worst" class="input-label">Concave Points Worst</label>
+                    <input type="number" id="concave_points_worst" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="symmetry_worst" class="input-label">Symmetry Worst</label>
+                    <input type="number" id="symmetry_worst" class="input-field">
+                </div>
+                <div class="input-group">
+                    <label for="fractal_dimension_worst" class="input-label">Fractal Dimension Worst</label>
+                    <input type="number" id="fractal_dimension_worst" class="input-field">
+                </div>
+            </div>
+
+            <div class="flex justify-center mt-8">
+                <button id="predictBtn" class="predict-btn">
+                    <i class="fas fa-brain mr-2"></i> Predict
+                </button>
+            </div>
+            <div id="result" class="mt-8 text-xl font-semibold text-center hidden"></div>
+        </div>
+    </main>
+
+    <script>
+        // GSAP Animations
+        gsap.from("nav", { y: -100, opacity: 0, duration: 1, ease: "power3.out" });
+        gsap.from("main > *", { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: "power3.out" });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Check for saved theme preference or prefer-color-scheme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            htmlElement.classList.add('dark');
+        }
+
+        // Prediction functionality (mock)
+        const predictBtn = document.getElementById('predictBtn');
+        const result = document.getElementById('result');
+
+        predictBtn.addEventListener('click', () => {
+            // Mock prediction result
+            
+            result.classList.remove('hidden');
+            gsap.from(result, { opacity: 0, y: 20, duration: 0.5 });
+        });
+    </script>
+</body>
+</html>
