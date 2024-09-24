@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Prediction - Nivaran</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .file-input-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .file-input-wrapper .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-[#D1B8A6] dark:bg-[#210203] text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <nav class="bg-[#D1B8A6] dark:bg-[#210203] p-4 fixed w-full z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold">Nivaran</a>
+            <div class="flex items-center space-x-6">
+                <a href="disease.html?disease=brain-tumor" class="hover:text-gray-600 dark:hover:text-gray-300 transition duration-300">Back to Disease</a>
+                <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:inline"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 container mx-auto p-8">
+        <h1 class="text-5xl font-bold mb-8 text-center">Lung Cancer Prediction</h1>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+            <div class="mb-8 text-center">
+                <label for="imageUpload" class="block text-lg font-semibold mb-4">Upload Lung Image</label>
+                <div class="file-input-wrapper">
+                    <button class="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                        <i class="fas fa-upload mr-2"></i>Choose File
+                    </button>
+                    <input type="file" id="imageUpload" accept="image/*">
+                </div>
+                <p id="fileName" class="mt-2 text-sm text-gray-600 dark:text-gray-400"></p>
+            </div>
+            <div id="imagePreview" class="mb-8 hidden">
+                <img id="previewImage" src="" alt="Brain Scan Preview" class="max-w-full h-auto mx-auto rounded-lg shadow-md">
+            </div>
+            <div class="flex justify-center items-center">
+                <button id="predictBtn" class="predict-btn text-xl font-semibold bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-brain mr-2"></i>Predict
+                </button>
+            </div>
+            <div id="result" class="mt-8 text-xl font-semibold text-center hidden"></div>
+        </div>
+    </main>
+
+    <script>
+        // GSAP Animations
+        gsap.from("nav", { y: -100, opacity: 0, duration: 1, ease: "power3.out" });
+        gsap.from("main > *", { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: "power3.out" });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Check for saved theme preference or prefer-color-scheme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            htmlElement.classList.add('dark');
+        }
+
+        // File input functionality
+        const fileInput = document.getElementById('imageUpload');
+        const fileName = document.getElementById('fileName');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImage = document.getElementById('previewImage');
+        const fileInputWrapper = document.querySelector('.file-input-wrapper');
+
+        fileInputWrapper.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'INPUT') {
+                fileInput.click();
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                fileName.textContent = file.name;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    previewImage.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                    gsap.from(imagePreview, { opacity: 0, y: 20, duration: 0.5 });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Prediction functionality (mock)
+        const predictBtn = document.getElementById('predictBtn');
+        const result = document.getElementById('result');
+
+        predictBtn.addEventListener('click', () => {
+            if (!fileInput.files.length) {
+                alert('Please upload an image first.');
+                return;
+            }
+            // This is a mock prediction. In a real application, you would send the image to a server for processing.
+            const mockPrediction = Math.random() > 0.5 ? "Positive" : "Negative";
+            result.innerHTML = `
+                <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                    <p class="mb-2">Prediction:</p>
+                    <p class="${mockPrediction === 'Positive' ? 'text-red-500' : 'text-green-500'}">
+                        ${mockPrediction} for Brain Tumor
+                    </p>
+                </div>
+            `;
+            result.classList.remove('hidden');
+            gsap.from(result, { opacity: 0, y: 20, duration: 0.5 });
+        });
+    </script>
+</body>
+</html>

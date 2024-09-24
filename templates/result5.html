@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Detection - Nivaran</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+        }
+        .input-label {
+            font-size: 14px;
+            color: #374151;
+            font-weight: bold;
+        }
+        .predict-btn {
+            background-color: #10b981;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .predict-btn:hover {
+            background-color: #059669;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-[#D1B8A6] dark:bg-[#210203] text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <nav class="bg-[#D1B8A6] dark:bg-[#210203] p-4 fixed w-full z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold">Nivaran</a>
+            <div class="flex items-center space-x-6">
+                <a href="disease.html?disease=diabetes" class="hover:text-gray-600 dark:hover:text-gray-300 transition duration-300">Back to Disease</a>
+                <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:inline"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 container mx-auto p-8">
+        <h1 class="text-5xl font-bold mb-8 text-center">Diabetes Detection</h1>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+            <div class="grid grid-cols-2 gap-6">
+                <div class="input-group">
+                    <label for="pregnancies" class="input-label">Pregnancies</label>
+                    <input type="number" id="pregnancies" class="input-field" placeholder="Enter number of pregnancies">
+                </div>
+                <div class="input-group">
+                    <label for="glucose" class="input-label">Glucose</label>
+                    <input type="number" id="glucose" class="input-field" placeholder="Enter glucose level">
+                </div>
+                <div class="input-group">
+                    <label for="bloodPressure" class="input-label">Blood Pressure</label>
+                    <input type="number" id="bloodPressure" class="input-field" placeholder="Enter blood pressure">
+                </div>
+                <div class="input-group">
+                    <label for="skinThickness" class="input-label">Skin Thickness</label>
+                    <input type="number" id="skinThickness" class="input-field" placeholder="Enter skin thickness">
+                </div>
+                <div class="input-group">
+                    <label for="insulin" class="input-label">Insulin</label>
+                    <input type="number" id="insulin" class="input-field" placeholder="Enter insulin level">
+                </div>
+                <div class="input-group">
+                    <label for="bmi" class="input-label">BMI</label>
+                    <input type="number" id="bmi" step="0.1" class="input-field" placeholder="Enter BMI">
+                </div>
+                <div class="input-group">
+                    <label for="diabetesPedigreeFunction" class="input-label">Diabetes Pedigree Function</label>
+                    <input type="number" id="diabetesPedigreeFunction" step="0.01" class="input-field" placeholder="Enter pedigree function">
+                </div>
+                <div class="input-group">
+                    <label for="age" class="input-label">Age</label>
+                    <input type="number" id="age" class="input-field" placeholder="Enter age">
+                </div>
+            </div>
+
+            <div class="flex justify-center mt-8">
+                <button id="predictBtn" class="predict-btn">
+                    <i class="fas fa-stethoscope mr-2"></i> Predict
+                </button>
+            </div>
+            <div id="result" class="mt-8 text-xl font-semibold text-center hidden"></div>
+        </div>
+    </main>
+
+    <script>
+        // GSAP Animations
+        gsap.from("nav", { y: -100, opacity: 0, duration: 1, ease: "power3.out" });
+        gsap.from("main > *", { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: "power3.out" });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Check for saved theme preference or prefer-color-scheme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            htmlElement.classList.add('dark');
+        }
+
+        // Prediction functionality (mock)
+        const predictBtn = document.getElementById('predictBtn');
+        const result = document.getElementById('result');
+
+        predictBtn.addEventListener('click', () => {
+            // Mock prediction result
+            const mockPrediction = Math.random() > 0.5 ? "Positive" : "Negative";
+            result.innerHTML = `
+                <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                    <p class="mb-2">Prediction:</p>
+                    <p class="${mockPrediction === 'Positive' ? 'text-red-500' : 'text-green-500'}">
+                        ${mockPrediction} for Diabetes
+                    </p>
+                </div>
+            `;
+            result.classList.remove('hidden');
+            gsap.from(result, { opacity: 0, y: 20, duration: 0.5 });
+        });
+    </script>
+</body>
+</html>
