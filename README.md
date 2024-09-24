@@ -63,7 +63,8 @@
 Farm_Heath is specially decined  platform for  farmers , it uses neural networks to predict the disease of potato plant by just unploading the photo of leaf from your device, with the help of NLP it will also be providing insides on analysing the growth of fertiliser product  using sentimental analysis and summary of huge reviews in 5 lines . This website also be providing some useful farming laws and schemes given by our government which are available on regional languages such as hindi, english, & tamil .
 
 
-![farmhealth](https://github.com/user-attachments/assets/3afd50ad-4311-4882-a75d-1acd600c58cd)
+
+![home_nivaran](https://github.com/user-attachments/assets/2dd79a5a-286b-474b-848a-d632b2c366e8)
 
 # Built With
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white)
