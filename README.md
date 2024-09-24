@@ -1,4 +1,4 @@
-# Nivaran
+
 
 <!-- PROJECT LOGO -->
 <br />
@@ -8,7 +8,7 @@
   </a>
 
   <p align="center">
-    ACM_FARM_HEALTH'24
+    ACM_NIVARAN AI DRIVEN DISEASE PREDICTION WITH NEARBY PHARMACY & CHATBOT
     <br />
     <a href="https://github.com/Adityapratapsingh28/ACM_FARM_HEALTH-24"><strong>Explore the docs »</strong></a>
     <br />
