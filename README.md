@@ -211,9 +211,6 @@ Nilesh Kanti - [Linkedin](https://www.linkedin.com/in/nileshkanti/)
 
 Aditya Pratap Singh - [Linkedin](https://www.linkedin.com/in/aditya-singhpratapsingh8a4a62287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
 
-Srijan Sarkar - [Linkedin](https://www.linkedin.com/in/srijan-sarkar-90177b288/)
-
-Sai Ganeshan M - [Linkedin](https://www.linkedin.com/in/sai-ganeshan-manikandan-6a3aa5287/)
 
 
 
