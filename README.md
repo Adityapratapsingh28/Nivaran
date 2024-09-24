@@ -166,17 +166,25 @@ The healthcare system faces challenges in timely, accurate diagnoses, especially
 
 ![pharmacy](https://github.com/user-attachments/assets/fc64d7e1-baa8-4323-a386-3e7b00750a9f)
 
-- Farmers laws/schemes
 
-   - Since many farmers are unaware about the farmer laws given by our goverment and schemes provided by the goverment to help farmers, so on our website we have provided the laws & schemes in a very easy simple language so the farmer can understand easily.
- 
 - Website Interface: 
 
-  - User-friendly website interface for easy interaction and navigation.
+  - User-friendly website interface for easy interaction and navigation with darkmode & light mode.
  
+
+
+
+ <img width="914" alt="darkmode" src="https://github.com/user-attachments/assets/49e28858-fec4-42c3-a085-39eb4db47f1f">
+
 - Enhanced Model Training:
 
   - Our deep learning model is trained and tested and the accuracy is 98% , while our summarization analysis model is also performing good.
+ 
+
+
+<img width="709" alt="accuracy" src="https://github.com/user-attachments/assets/3d3560ee-2e87-4c49-b091-3b10a1e45c20">
+
+
 
 <!-- CONTRIBUTING -->
 ## Contributing
