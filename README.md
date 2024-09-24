@@ -86,7 +86,7 @@ In this section you should provide instructions on how to use this repository to
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/Adityapratapsingh28/ACM_FARM_HEALTH-24.git
+   git clone https://github.com/Adityapratapsingh28/Nivaran
    ```
 
 ### Dependencies
@@ -98,7 +98,7 @@ Here, list all libraries, packages and other dependencies that need to be instal
 For example, this is how you would list them:
 * Installing all dependencies
   ```sh
-  pip install -r requirements.txt
+  pip install -r Requirements.txt
   ```
 * Example of requirements.txt
   ```sh
